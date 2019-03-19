@@ -8,12 +8,12 @@ public enum ProductStatusEnum implements CodeEnum {
     DOWN(1, "下架")
     ;
 
-    private Integer code;
+    private Integer status;
 
     private String message;
 
-    ProductStatusEnum(Integer code, String message) {
-        this.code = code;
+    ProductStatusEnum(Integer status, String message) {
+        this.status = status;
         this.message = message;
     }
 

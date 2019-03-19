@@ -6,5 +6,5 @@ package com.zr.enums;
  * @Description:
  */
 public interface CodeEnum {
-    Integer getCode();
+    Integer getStatus();
 }

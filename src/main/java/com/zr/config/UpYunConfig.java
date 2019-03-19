@@ -4,10 +4,7 @@ import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
-/**
- * Created by 廖师兄
- * 2018-06-05 16:15
- */
+
 @Component
 @ConfigurationProperties("upyun")
 @Data

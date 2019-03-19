@@ -1,4 +1,4 @@
-package com.imooc.enums;
+package com.zr.enums;
 
 import lombok.Getter;
 
@@ -48,12 +48,12 @@ public enum ResultEnum {
     LOGOUT_SUCCESS(26, "登出成功"),
     ;
 
-    private Integer code;
+    private Integer status;
 
     private String message;
 
-    ResultEnum(Integer code, String message) {
-        this.code = code;
+    ResultEnum(Integer status, String message) {
+        this.status = status;
         this.message = message;
     }
 }

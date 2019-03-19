@@ -6,10 +6,7 @@ import org.springframework.stereotype.Component;
 
 import javax.servlet.MultipartConfigElement;
 
-/**
- * Created by 廖师兄
- * 2018-06-05 14:49
- */
+
 @Component
 public class ImageUploadConfig {
 

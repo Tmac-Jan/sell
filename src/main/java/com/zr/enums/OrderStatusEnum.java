@@ -1,11 +1,8 @@
-package com.imooc.enums;
+package com.zr.enums;
 
 import lombok.Getter;
 
-/**
- * Created by 廖师兄
- * 2017-06-11 17:12
- */
+
 @Getter
 public enum OrderStatusEnum implements CodeEnum {
     NEW(0, "新订单"),
@@ -13,12 +10,12 @@ public enum OrderStatusEnum implements CodeEnum {
     CANCEL(2, "已取消"),
     ;
 
-    private Integer code;
+    private Integer status;
 
     private String message;
 
-    OrderStatusEnum(Integer code, String message) {
-        this.code = code;
+    OrderStatusEnum(Integer status, String message) {
+        this.status = status;
         this.message = message;
     }
 }

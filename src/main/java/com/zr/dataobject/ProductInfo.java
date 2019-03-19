@@ -41,7 +41,7 @@ public class ProductInfo implements Serializable {
     private String productIcon;
 
     /** 状态, 0正常 1下架. */
-    private Integer productStatus = ProductStatusEnum.UP.getCode();
+    private Integer productStatus = ProductStatusEnum.UP.getStatus();
 
     /** 类目编号. */
     private String categoryType;

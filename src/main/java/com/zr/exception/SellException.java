@@ -1,7 +1,6 @@
 package com.zr.exception;
 
 import com.zr.enums.ResultEnum;
-import com.zr.enums.ResultEnum;
 import lombok.Getter;
 
 /**
@@ -16,7 +15,7 @@ public class SellException extends RuntimeException{
     public SellException(ResultEnum resultEnum) {
         super(resultEnum.getMessage());
 
-        this.code = resultEnum.getCode();
+        this.code = resultEnum.getStatus();
     }
 
     public SellException(Integer code, String message) {

@@ -1,25 +1,21 @@
-package com.imooc.enums;
+package com.zr.enums;
 
 import lombok.Getter;
 
-/**
- * Created by 廖师兄
- * 2017-06-11 17:16
- */
+
 @Getter
 public enum PayStatusEnum implements CodeEnum {
 
     WAIT(0, "等待支付"),
     SUCCESS(1, "支付成功"),
-
     ;
 
-    private Integer code;
+    private Integer status;
 
     private String message;
 
-    PayStatusEnum(Integer code, String message) {
-        this.code = code;
+    PayStatusEnum(Integer status, String message) {
+        this.status = status;
         this.message = message;
     }
 }
