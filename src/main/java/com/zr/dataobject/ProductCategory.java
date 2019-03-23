@@ -29,9 +29,9 @@ public class ProductCategory {
     /**
      * 类目编号.
      */
-    private String categoryType;
+    private String categoryType; //UUID
 
-    private Integer shopId;
+    private String shopId;
 
     private Date createTime;
 

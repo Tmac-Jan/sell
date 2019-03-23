@@ -5,6 +5,9 @@
                 卖家管理系统
             </a>
         </li>
+        <li class="sidebar-brand">
+            <img alt="100x100" src="/sell/img/waimai.png" height="50" width="50" style="margin-left: 60px;"/>
+        </li>
         <li>
             <a href="/sell/seller/order/list"><i class="fa fa-fw fa-list-alt"></i> 订单</a>
         </li>
@@ -24,7 +27,20 @@
                 <li><a href="/sell/seller/category/index">新增</a></li>
             </ul>
         </li>
-
+        <li class="dropdown open">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="fa fa-fw fa-plus"></i> 商店评价 <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+                <li><a href="/sell/seller/category/list">列表</a></li>
+                <#--<li><a href="/sell/seller/category/index">回复评价</a></li>-->
+            </ul>
+        </li>
+        <li class="dropdown open">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="fa fa-fw fa-plus"></i> 商店投诉 <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+                <li><a href="/sell/seller/buyerComplain/list">列表</a></li>
+                <#--<li><a href="/sell/seller/category/index">回复评价</a></li>-->
+            </ul>
+        </li>
         <li>
             <a href="/sell/seller/logout"><i class="fa fa-fw fa-list-alt"></i> 登出</a>
         </li>

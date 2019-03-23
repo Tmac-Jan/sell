@@ -44,9 +44,9 @@ public class WeChatController {
     }
 
     @GetMapping("/userInfo")
-    public String userInfo(@RequestParam("code") String code,
-                           @RequestParam("state") String returnUrl) {
+    public String userInfo(@RequestParam("code") String code,@RequestParam("state") String returnUrl) {
         //多余？
+
         WxMpOAuth2AccessToken wxMpOAuth2AccessToken = new WxMpOAuth2AccessToken();
         try {
             wxMpOAuth2AccessToken = wxMpService.oauth2getAccessToken(code);
@@ -68,18 +68,20 @@ public class WeChatController {
     }
 
     @GetMapping("/qrUserInfo")
-    public String qrUserInfo(@RequestParam("code") String code,
-                             @RequestParam("state") String returnUrl) {
+    public String qrUserInfo(@RequestParam("code") String code
+                             ) {//@RequestParam("state") String returnUrl
+        String returnUrl ="http://sellgio.natapp1.cc/sell/seller/login";
         WxMpOAuth2AccessToken wxMpOAuth2AccessToken = new WxMpOAuth2AccessToken();
         try {
+            //根据code访问WeChat授权中心拿到openid，openid 在token里面
             wxMpOAuth2AccessToken = wxOpenService.oauth2getAccessToken(code);
         } catch (WxErrorException e) {
             log.error("【微信网页授权】{}", e);
             throw new SellException(ResultEnum.WECHAT_MP_ERROR.getStatus(), e.getError().getErrorMsg());
         }
         log.info("wxMpOAuth2AccessToken={}", wxMpOAuth2AccessToken);
-        String openId = wxMpOAuth2AccessToken.getOpenId();
-
+       // String openId = wxMpOAuth2AccessToken.getOpenId();
+        String openId = "oTgZpwWy9AifxZZKQGbFAlJfVEkw";
         return "redirect:" + returnUrl + "?openid=" + openId;
     }
 }

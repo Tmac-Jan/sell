@@ -38,7 +38,7 @@ public class OrderForm {
      * 购物车
      */
     @NotEmpty(message = "商家Id必填")
-    private Integer shopId;
+    private String shopId;
 
     @NotEmpty(message = "购物车不能为空")
     private String items;

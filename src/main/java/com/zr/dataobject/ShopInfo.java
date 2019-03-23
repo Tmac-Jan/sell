@@ -1,6 +1,7 @@
 package com.zr.dataobject;
 
 import lombok.Data;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -8,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.criteria.CriteriaBuilder;
 import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * @Auther: Administrator (zhangrun macmanboy@foxmail.com)
@@ -16,6 +18,7 @@ import java.math.BigDecimal;
  */
 @Data
 @Entity
+@DynamicUpdate
 public class ShopInfo {
     @Id
     private String id;
@@ -31,8 +34,13 @@ public class ShopInfo {
     private Integer shopBlock;//是否被封店
     private Integer shopExpressTime;//平均配送时间
     private Integer shopScore;//商店评分
+    private String shopName;//商店名字
+    private Date createTime;
+    private Date updateTime;
     @OneToOne(targetEntity = SellerInfo.class)
-    @JoinColumn(name="seller_id")
+    @JoinColumn(name = "seller_id")
     private SellerInfo sellerInfo;
-    public  ShopInfo(){}
+
+    public ShopInfo() {
+    }
 }

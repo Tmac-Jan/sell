@@ -55,7 +55,7 @@ public class OrderDTO {
     private Integer payStatus;
 
     //商家id
-    private Integer ShopId;
+    private String ShopId;
 
     //创建时间
     @JsonSerialize(using = Date2LongSerializer.class)

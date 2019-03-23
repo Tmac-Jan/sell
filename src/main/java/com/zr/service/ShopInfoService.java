@@ -10,4 +10,5 @@ import com.zr.dataobject.ShopInfo;
  */
 public interface ShopInfoService {
     ShopInfo findBySellerInfo(SellerInfo sellerInfo);
+    ShopInfo findById(String id);
 }

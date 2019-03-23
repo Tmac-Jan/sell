@@ -12,7 +12,7 @@
         <div class="container-fluid">
             <div class="row clearfix">
                 <div class="col-md-12 column">
-                    <table class="table table-bordered table-condensed">
+                    <table class="table table-striped table-hover">
                         <thead>
                         <tr>
                             <th>订单id</th>
@@ -50,7 +50,7 @@
                     </table>
                 </div>
 
-            <#--分页-->
+            <#--分页  需优化代码-->
                 <div class="col-md-12 column">
                     <ul class="pagination pull-right">
                     <#if currentPage lte 1>
@@ -103,44 +103,45 @@
 
 <#--播放音乐-->
 <audio id="notice" loop="loop">
-    <source src="/sell/mp3/song.mp3" type="audio/mpeg" />
+    <source src="/sell/getOrderMp3/order.mp3" type="audio/mpeg" />
 </audio>
 
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<#--<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>-->
 <script src="https://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<script>
-    var websocket = null;
-    if('WebSocket' in window) {
-        websocket = new WebSocket('ws://sell.natapp4.cc/sell/webSocket');
-    }else {
-        alert('该浏览器不支持websocket!');
-    }
+<#--<script>-->
+    <#--var websocket = null;-->
+    <#--if('WebSocket' in window) {-->
+        <#--websocket = new WebSocket('ws://sell.natapp4.cc/sell/webSocket');-->
+    <#--}else {-->
+        <#--alert('该浏览器不支持websocket!');-->
+    <#--}-->
 
-    websocket.onopen = function (event) {
-        console.log('建立连接');
-    }
+    <#--websocket.onopen = function (event) {-->
+        <#--console.log('建立连接');-->
+    <#--}-->
 
-    websocket.onclose = function (event) {
-        console.log('连接关闭');
-    }
+    <#--websocket.onclose = function (event) {-->
+        <#--console.log('连接关闭');-->
+    <#--}-->
 
-    websocket.onmessage = function (event) {
-        console.log('收到消息:' + event.data)
-        //弹窗提醒, 播放音乐
-        $('#myModal').modal('show');
+    <#--websocket.onmessage = function (event) {-->
+        <#--console.log('收到消息:' + event.data)-->
+        <#--//弹窗提醒, 播放音乐-->
+        <#--$('#myModal').modal('show');-->
 
-        document.getElementById('notice').play();
-    }
+        <#--document.getElementById('notice').play();-->
+    <#--}-->
 
-    websocket.onerror = function () {
-        alert('websocket通信发生错误！');
-    }
+    <#--websocket.onerror = function () {-->
+        <#--alert('websocket通信发生错误！');-->
+    <#--}-->
 
-    window.onbeforeunload = function () {
-        websocket.close();
-    }
+    <#--window.onbeforeunload = function () {-->
+        <#--websocket.close();-->
+    <#--}-->
 
-</script>
+<#--</script>-->
 
 </body>
 </html>

@@ -24,8 +24,6 @@ public class SellerInfo {
 
     private String openid;
 
-    private String sellerId;
-
     private Date createTime;
 
     private Date updateTime;
@@ -34,13 +32,6 @@ public class SellerInfo {
 
     public SellerInfo (){}
 
-    public String getSellerId() {
-        return sellerId;
-    }
-
-    public void setSellerId(String sellerId) {
-        this.sellerId = sellerId;
-    }
 
     public String getUsername() {
         return username;

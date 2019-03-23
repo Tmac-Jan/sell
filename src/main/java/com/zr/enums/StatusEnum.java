@@ -5,6 +5,6 @@ package com.zr.enums;
  * @Date: 2019/3/12 22:22
  * @Description:
  */
-public interface CodeEnum {
+public interface StatusEnum {
     Integer getStatus();
 }

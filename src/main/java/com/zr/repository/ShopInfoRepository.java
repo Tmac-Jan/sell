@@ -14,4 +14,5 @@ import java.util.List;
 public interface ShopInfoRepository extends JpaRepository<ShopInfo,String> {
     List<ShopInfo> findByShopType(String shopType);
     ShopInfo findBySellerInfo(SellerInfo sellerInfo);
+    ShopInfo findById(String id);
 }

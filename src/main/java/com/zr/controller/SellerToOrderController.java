@@ -43,7 +43,7 @@ public class SellerToOrderController {
                              Map<String, Object> map) {
         PageRequest request = new PageRequest(page - 1, size);
         //Page<OrderDTO> orderDTOPage = orderService.findList(request);
-        SellerInfo sellerInfo = sellerInfoService.findSellerInfoById("2110");
+        SellerInfo sellerInfo = sellerInfoService.findSellerInfoById("2111");
         ShopInfo shopInfo = shopInfoService.findBySellerInfo(sellerInfo);
         Page<OrderDTO> orderDTOPage = orderService.findByShopId(shopInfo.getId(),request);
         map.put("orderDTOPage", orderDTOPage);

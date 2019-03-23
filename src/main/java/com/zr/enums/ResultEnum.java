@@ -46,6 +46,9 @@ public enum ResultEnum {
     LOGIN_FAIL(25, "登录失败, 登录信息不正确"),
 
     LOGOUT_SUCCESS(26, "登出成功"),
+
+    SHOP_NOT_EXIST(27,"商店不存在"),
+    BUYER_COMPLAIN_NOT_EXIST(28,"投诉不存在"),
     ;
 
     private Integer status;

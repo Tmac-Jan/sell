@@ -22,4 +22,9 @@ public class ShopInfoServiceImpl implements ShopInfoService {
     public ShopInfo findBySellerInfo(SellerInfo sellerInfo) {
         return shopInfoRepository.findBySellerInfo(sellerInfo);
     }
+
+    @Override
+    public ShopInfo findById(String id) {
+        return shopInfoRepository.findById(id);
+    }
 }
