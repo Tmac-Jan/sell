@@ -43,7 +43,7 @@ public class CategoryServiceImplTest {
     @Test
     public void findByShopId() throws Exception {
         //List<Integer> list = Arrays.asList(2,3,4);
-        List<ProductCategory> result = repository.findByShopId(1);
+        List<ProductCategory> result = repository.findByShopId("1");
         //System.out.println(result.toString());
         Assert.assertNotEquals(0, result.size());
     }

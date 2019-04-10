@@ -2,10 +2,13 @@ package com.zr.service.impl;
 
 import com.zr.dataobject.SellerInfo;
 import com.zr.dataobject.ShopInfo;
+import com.zr.enums.ShopStatusEnum;
 import com.zr.repository.SellerInfoRepository;
 import com.zr.repository.ShopInfoRepository;
 import com.zr.service.ShopInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 /**
@@ -24,7 +27,29 @@ public class ShopInfoServiceImpl implements ShopInfoService {
     }
 
     @Override
-    public ShopInfo findById(String id) {
+    public ShopInfo findOne(String id) {
         return shopInfoRepository.findById(id);
+    }
+
+    @Override
+    public void save(ShopInfo shopInfo) {
+        shopInfoRepository.save(shopInfo);
+    }
+
+    @Override
+    public Page<ShopInfo> findAll(Pageable pageable) {
+        return shopInfoRepository.findAll(pageable);
+    }
+
+    @Override
+    public void block(ShopInfo shopInfo) {
+        shopInfo.setShopBlock(ShopStatusEnum.SHOP_BLOCK.getStatus());
+        shopInfoRepository.save(shopInfo);
+    }
+
+    @Override
+    public void reOpen(ShopInfo shopInfo) {
+        shopInfo.setShopBlock(ShopStatusEnum.SHOP_OK.getStatus());
+        shopInfoRepository.save(shopInfo);
     }
 }

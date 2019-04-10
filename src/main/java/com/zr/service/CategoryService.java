@@ -16,7 +16,7 @@ public interface CategoryService {
 
     List<ProductCategory> findByCategoryTypeIn(List<String> categoryTypeList);
 
-    List<ProductCategory> findByShopId(Integer shopId);
+    List<ProductCategory> findByShopId(String shopId);
 
     ProductCategory save(ProductCategory productCategory);
 }

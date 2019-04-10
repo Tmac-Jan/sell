@@ -18,15 +18,14 @@ import java.util.Date;
 @DynamicUpdate
 public class OrderEval {
     @Id
-    @GeneratedValue
-    private Integer id;
+    private String id;
     private String buyerId;
     private String buyerOpenid;
-    private String buyEval;
+    private String buyerEval;
     private Integer score;
     private String recommend;
     private Integer rateType;
-    private Integer deliverTime;
+    private Integer deliveryTime;
     private String orderId;
     private String shopReply;
     private String evalPhoto;

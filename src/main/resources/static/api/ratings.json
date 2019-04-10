@@ -1,0 +1,49 @@
+{
+  "errno": 0,
+  "data": [
+    {
+      "username": "5******c",
+      "rateTime": 1469281964000,
+      "deliveryTime": 30,
+      "score": 5,
+      "rateType": 0,
+      "text": "润润店长真的帅，外卖小哥人也挺好",
+      "avatar": "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1217237956,3037104708&fm=26&gp=0.jpg",
+      "recommend": [
+        "润润汉堡",
+        "陈莎莎最爱"
+      ]
+    },
+    {
+      "username": "Z******3",
+      "rateTime": 1469271264000,
+      "deliveryTime": "",
+      "score": 4,
+      "rateType": 0,
+      "text": "还行吧，汉堡还是可以的",
+      "avatar": "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1217237956,3037104708&fm=26&gp=0.jpg",
+      "recommend": [
+        "彬彬汉堡"
+      ]
+    },
+    {
+      "username": "3******b",
+      "rateTime": 1469261964000,
+      "score": 3,
+      "rateType": 1,
+      "text": "",
+      "avatar": "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1217237956,3037104708&fm=26&gp=0.jpg",
+      "recommend": []
+    },
+    {
+      "username": "1******c",
+      "rateTime": 1469261864000,
+      "deliveryTime": 20,
+      "score": 5,
+      "rateType": 0,
+      "text": "还挺好吃的吧",
+      "avatar": "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1217237956,3037104708&fm=26&gp=0.jpg",
+      "recommend": []
+    }
+  ]
+}

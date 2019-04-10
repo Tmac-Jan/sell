@@ -5,7 +5,7 @@
 <div id="wrapper" class="toggled">
 
 <#--边栏sidebar-->
-<#include "../common/nav.ftl">
+<#include "../common/nav1.ftl">
 
 <#--主要内容content-->
     <div id="page-content-wrapper">
@@ -19,11 +19,12 @@
                         </div>
                         <div class="form-group">
                             <label>价格</label>
-                            <input name="productPrice" type="text" class="form-control" value="${(productInfo.productPrice)!''}"/>
+                            <input name="productPrice" type="number" class="form-control" step="0.01" value="${(productInfo.productPrice)!''}"/>
                         </div>
                         <div class="form-group">
                             <label>库存</label>
-                            <input name="productStock" type="number" class="form-control" value="${(productInfo.productStock)!''}"/>
+                            <input name="productStock" type="text" class="form-control" value="${(productInfo.productStock)!''}"
+                                   onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="this.v();"/>
                         </div>
                         <div class="form-group">
                             <label>描述</label>
@@ -61,6 +62,7 @@
 </div>
 
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script src="https://cdn.bootcss.com/bootstrap-fileinput/4.4.8/js/fileinput.min.js"></script>
 <script src="https://cdn.bootcss.com/bootstrap-fileinput/4.4.8/js/locales/zh.min.js"></script>
 <#--<script src="https://cdn.bootcss.com/bootstrap-fileinput/4.4.8/js/locales/zh.min.js"></script>-->

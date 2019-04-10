@@ -15,9 +15,9 @@
                     <table class="table table-bordered table-condensed">
                         <thead>
                         <tr>
-                            <th>类目id</th>
-                            <th>名字</th>
-                            <th>type</th>
+                            <th>类目编号</th>
+                            <th>类目名字</th>
+                            <th>类目唯一识别</th>
                             <th>创建时间</th>
                             <th>修改时间</th>
                             <th>操作</th>

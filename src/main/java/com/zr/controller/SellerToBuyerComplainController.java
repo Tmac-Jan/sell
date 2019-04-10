@@ -58,7 +58,7 @@ public class SellerToBuyerComplainController {
         return new ModelAndView("sellerToBuyerComplain/list", map);
     }
     @GetMapping("/index")
-    public ModelAndView index(@RequestParam(value = "id", required = false) String id,
+    public ModelAndView index(@RequestParam(value = "id") String id,
                               Map<String, Object> map) {
         if (!StringUtils.isEmpty(id)) {
 

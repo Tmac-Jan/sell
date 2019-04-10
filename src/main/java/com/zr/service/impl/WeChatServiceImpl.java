@@ -39,7 +39,7 @@ public class WeChatServiceImpl implements WeChatMessageService {
         templateMessage.setTemplateId(accountConfig.getTemplateId().get("orderStatus"));
         templateMessage.setToUser(orderDTO.getBuyerOpenid());
 
-        ShopInfo shopInfo = shopInfoService.findById(orderDTO.getShopId());
+        ShopInfo shopInfo = shopInfoService.findOne(orderDTO.getShopId());
         if (shopInfo==null){
             throw new SellException(ResultEnum.SHOP_NOT_EXIST);
         }

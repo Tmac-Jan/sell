@@ -1,9 +1,26 @@
 package com.zr.dataobject;
 
+import lombok.Data;
+import org.hibernate.annotations.DynamicUpdate;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import java.util.Date;
+
 /**
  * @Auther: Administrator (zhangrun macmanboy@foxmail.com)
  * @Date: 2019/3/12 10:52
  * @Description:
  */
+@Data
+@Entity
+@DynamicUpdate
 public class SupportInfo {
+    @Id
+    private String id;
+    private String username;
+    private String password;
+    private String openid;
+    private Date createTime;
+    private Date updateTime;
 }

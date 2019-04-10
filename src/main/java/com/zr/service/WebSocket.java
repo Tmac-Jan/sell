@@ -53,4 +53,19 @@ public class WebSocket {
             }
         }
     }
+//    public static void sendInfo(String message,@PathParam("sid") String sid) throws IOException {
+//        log.info("推送消息到窗口"+sid+"，推送内容:"+message);
+//        for (WebSocket item : webSocketSet) {
+//            try {
+//                //这里可以设定只推送给这个sid的，为null则全部推送
+//                if(sid==null) {
+//                    item.sendMessage(message);
+//                }else if(item.sid.equals(sid)){
+//                    item.sendMessage(message);
+//                }
+//            } catch (IOException e) {
+//                continue;
+//            }
+//        }
+//    }
 }

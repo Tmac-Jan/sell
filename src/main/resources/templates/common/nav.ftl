@@ -30,16 +30,29 @@
         <li class="dropdown open">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="fa fa-fw fa-plus"></i> 商店评价 <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-                <li><a href="/sell/seller/category/list">列表</a></li>
+                <li class="dropdown-header">操作</li>
+                <li><a href="/sell/seller/orderEval/list">列表</a></li>
                 <#--<li><a href="/sell/seller/category/index">回复评价</a></li>-->
             </ul>
         </li>
         <li class="dropdown open">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="fa fa-fw fa-plus"></i> 商店投诉 <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
+                <li class="dropdown-header">操作</li>
                 <li><a href="/sell/seller/buyerComplain/list">列表</a></li>
-                <#--<li><a href="/sell/seller/category/index">回复评价</a></li>-->
             </ul>
+        </li>
+        <li class="dropdown open">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="fa fa-fw fa-plus"></i> 店铺申请/申诉 <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+                <li class="dropdown-header">操作</li>
+                <li><a href="/sell/seller/request/list">列表</a></li>
+                <li><a href="/sell/seller/request/index">申请</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="/sell/seller/shop/shopInfo"><i class="fa fa-fw fa-list-alt"></i> 首页</a>
+            <a href="/sell/seller/shop/index"><i class="fa fa-fw fa-list-alt"></i> 店铺信息管理</a>
         </li>
         <li>
             <a href="/sell/seller/logout"><i class="fa fa-fw fa-list-alt"></i> 登出</a>

@@ -49,6 +49,9 @@ public enum ResultEnum {
 
     SHOP_NOT_EXIST(27,"商店不存在"),
     BUYER_COMPLAIN_NOT_EXIST(28,"投诉不存在"),
+    ORDER_EVAL_NOT_EXIST(29,"订单评价不存在"),
+    SUPPORT_LOGIN_FAIL(30,"SUPPORT登录失败"),
+    REQUEST_NOT_EXIST(31,"申请不存在"),
     ;
 
     private Integer status;

@@ -103,6 +103,7 @@ public class SellerToProductController {
                               Map<String, Object> map) {
         if (!StringUtils.isEmpty(productId)) {
             ProductInfo productInfo = productService.findOne(productId);
+            System.out.println("productInfo:"+productInfo);
             map.put("productInfo", productInfo);
         }
 

@@ -3,20 +3,16 @@ package com.zr.controller;
 import com.zr.config.ProjectUrlConfig;
 import com.zr.constant.CookieConstant;
 import com.zr.constant.RedisConstant;
-import com.zr.dataobject.SellerInfo;
+import com.zr.dataobject.SupportInfo;
 import com.zr.enums.ResultEnum;
-import com.zr.service.SellerInfoService;
+import com.zr.service.SupportInfoService;
 import com.zr.utils.serializer.CookieUtil;
-import org.aspectj.lang.annotation.Before;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.Cookie;
@@ -28,14 +24,15 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * @Auther: Administrator (zhangrun macmanboy@foxmail.com)
- * @Date: 2019/3/21 14:56
+ * @Date: 2019/3/28 16:31
  * @Description:
  */
 @Controller
-@RequestMapping("/seller")
-public class SUserController {
+@RequestMapping("/support/user")
+public class SupportUserController {
+
     @Autowired
-    private SellerInfoService sellerInfoService;
+    private SupportInfoService supportInfoService;
 
     @Autowired
     private StringRedisTemplate redisTemplate;
@@ -48,13 +45,12 @@ public class SUserController {
                               Map<String, Object> map) {
 
         //1. openid去和数据库里的数据匹配
-
         //TODO
-        SellerInfo sellerInfo = sellerInfoService.findSellerInfoByOpenid(openid);
-        System.out.println("```````````````````````The openid is "+openid);
-        if (sellerInfo == null) {
-            map.put("msg", ResultEnum.LOGIN_FAIL.getMessage());
-            map.put("url", "/sell/seller/order/list");
+        SupportInfo supportInfo = supportInfoService.findByOpenid(openid);
+        System.out.println("```````````````````````The Support's openid is "+openid);
+        if (supportInfo == null) {
+            map.put("msg", ResultEnum.SUPPORT_LOGIN_FAIL.getMessage());
+            map.put("url", "/sell/support/ad/list");
             return new ModelAndView("common/error");
         }
 
@@ -62,13 +58,13 @@ public class SUserController {
         String token = UUID.randomUUID().toString();
         Integer expire = RedisConstant.EXPIRE;
 
-        //第一个参数 redis的key，第二 value是openid 第三是过期时间 第四 是秒
+        //第一个参数 redis的key，第二value是openid  第三是过期时间 第四是秒
         redisTemplate.opsForValue().set(String.format(RedisConstant.TOKEN_PREFIX, token), openid, expire, TimeUnit.SECONDS);
 
         //3. 设置token至cookie
         CookieUtil.set(response, CookieConstant.TOKEN, token, expire);
 
-        return new ModelAndView("redirect:" + projectUrlConfig.getSell() + "/sell/seller/order/list");
+        return new ModelAndView("redirect:" + projectUrlConfig.getSell() + "/sell/support/ac/list");
 
     }
     @GetMapping("/logout")
@@ -86,7 +82,7 @@ public class SUserController {
         }
 
         map.put("msg", ResultEnum.LOGOUT_SUCCESS.getMessage());
-        map.put("url", "/sell/seller/order/list");
+        map.put("url", "/sell/support/ac/list");
         return new ModelAndView("common/success", map);
     }
 }

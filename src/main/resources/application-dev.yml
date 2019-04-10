@@ -49,8 +49,8 @@ wechat:
     orderStatus: eUbOnYi9VqmJbrvgbpenUSg-xnnlheX5LphHpLr16cg
 
 projectUrl:
-  wechatMpAuthorize: http://sell.springboot.cn/
-  wechatOpenAuthorize: http://sell.springboot.cn/
+  wechatMpAuthorize: http://sellgio.natapp1.cc
+  wechatOpenAuthorize: http://sellgio.natapp1.cc
   sell: http://sellgio.natapp1.cc
 logging:
   level:
@@ -60,7 +60,7 @@ mybatis:
 
 # 又拍云服务 见 https://console.upyun.com/services/file/
 upyun:
-  bucketName: XXX
-  userName: xxx
-  password: xxxx
-  imageHost: http://xxx.com/
+  bucketName: gio-image
+  userName: giobit123
+  password: mac20192019
+  imageHost: http://gio-image.test.upcdn.net/

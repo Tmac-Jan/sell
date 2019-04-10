@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @Auther: Administrator (zhangrun macmanboy@foxmail.com)
@@ -36,12 +37,15 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public List<ProductCategory> findByShopId(Integer shopId) {
+    public List<ProductCategory> findByShopId(String shopId) {
         return repository.findByShopId(shopId);
     }
 
     @Override
     public ProductCategory save(ProductCategory productCategory) {
+        //生成UUID，该UUID与商铺对应，商品与此UUID对应
+        String uuidCategoryType = UUID.randomUUID().toString();
+        productCategory.setCategoryType(uuidCategoryType);
         return repository.save(productCategory);
     }
 }

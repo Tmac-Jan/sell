@@ -12,7 +12,7 @@ import org.springframework.data.jpa.repository.Query;
  * @Description:
  */
 public interface ShopRequestRepository  extends JpaRepository<ShopRequest,String> {
-    ShopRequest findById(String id);
     @Query(value = "SELECT * from shop_request ORDER BY ?#{#pageable},update_time DESC " ,nativeQuery = true)
     Page<ShopRequest> findAllOrderByUpdateTimeDesc(Pageable pageable);
+    Page<ShopRequest> findAllBySellerOpenid(String openid,Pageable pageable);
 }

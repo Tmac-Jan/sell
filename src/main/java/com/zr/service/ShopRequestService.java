@@ -1,6 +1,7 @@
 package com.zr.service;
 
 import com.zr.dataobject.ShopRequest;
+import com.zr.form.ShopRequestForm;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -10,8 +11,13 @@ import org.springframework.data.domain.Pageable;
  * @Description:
  */
 public interface ShopRequestService {
-    ShopRequest findById(String id);
-    void agreeRequest(String id);
+    ShopRequest findOne(String id);
+    void agreeRequest(ShopRequest shopRequest);
+    void handleRequest(ShopRequest shopRequest);
+    void rejectRequest(ShopRequest shopRequest);
+    void cancelRequest(ShopRequest shopRequest);
+    void save(ShopRequest shopRequest);
     Page<ShopRequest> findAllOrderByUpdateTimeDesc(Pageable pageable);
-
+    Page<ShopRequest> findAllBySellerOpenid(String openid,Pageable pageable);
+    Page<ShopRequestForm> getAllBySellerOpenid(String openid,Pageable pageable);
 }

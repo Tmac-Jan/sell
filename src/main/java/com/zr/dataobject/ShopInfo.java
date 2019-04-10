@@ -23,6 +23,7 @@ public class ShopInfo {
     @Id
     private String id;
     private String sellerOpenid;
+    private String shopName;//商店名字
     private String shopAddress;
     private String shopPhone;
     private String shopType;  //商店类型 比如卖汉堡的 还是日料的 等等
@@ -33,8 +34,8 @@ public class ShopInfo {
     private Integer shopOpen; //是否营业
     private Integer shopBlock;//是否被封店
     private Integer shopExpressTime;//平均配送时间
-    private Integer shopScore;//商店评分
-    private String shopName;//商店名字
+    private BigDecimal shopScore;//商店评分
+
     private Date createTime;
     private Date updateTime;
     @OneToOne(targetEntity = SellerInfo.class)

@@ -26,22 +26,18 @@ import java.util.stream.Collectors;
 public class ProductServiceImpl implements ProductService {
     @Autowired
     private ProductInfoRepository repository;
-
     @Autowired
     private UpYunConfig upYunConfig;
     @Override
-//    @Cacheable(key = "123")
     public ProductInfo findOne(String productId) {
         return repository.findOne(productId).addImageHost(upYunConfig.getImageHost());
     }
-
     @Override
     public List<ProductInfo> findUpAll() {
         return repository.findByProductStatus(ProductStatusEnum.UP.getStatus()).stream()
                 .map(e -> e.addImageHost(upYunConfig.getImageHost()))
                 .collect(Collectors.toList());
     }
-
     @Override
     public Page<ProductInfo> findAll(Pageable pageable) {
         Page<ProductInfo> productInfoPage = repository.findAll(pageable);
@@ -49,13 +45,10 @@ public class ProductServiceImpl implements ProductService {
                 .forEach(e -> e.addImageHost(upYunConfig.getImageHost()));
         return productInfoPage;
     }
-
     @Override
-//    @CachePut(key = "123")
     public ProductInfo save(ProductInfo productInfo) {
         return repository.save(productInfo).addImageHost(upYunConfig.getImageHost());
     }
-
     @Override
     @Transactional
     public void increaseStock(List<CartDTO> cartDTOList) {
@@ -71,7 +64,6 @@ public class ProductServiceImpl implements ProductService {
         }
 
     }
-
     @Override
     @Transactional
     public void decreaseStock(List<CartDTO> cartDTOList) {
@@ -91,7 +83,6 @@ public class ProductServiceImpl implements ProductService {
             repository.save(productInfo);
         }
     }
-
     @Override
     public ProductInfo onSale(String productId) {
         ProductInfo productInfo = repository.findOne(productId);
@@ -101,12 +92,9 @@ public class ProductServiceImpl implements ProductService {
         if (productInfo.getProductStatusEnum() == ProductStatusEnum.UP) {
             throw new SellException(ResultEnum.PRODUCT_STATUS_ERROR);
         }
-
-        //更新
         productInfo.setProductStatus(ProductStatusEnum.UP.getStatus());
         return repository.save(productInfo);
     }
-
     @Override
     public ProductInfo offSale(String productId) {
         ProductInfo productInfo = repository.findOne(productId);
@@ -116,8 +104,6 @@ public class ProductServiceImpl implements ProductService {
         if (productInfo.getProductStatusEnum() == ProductStatusEnum.DOWN) {
             throw new SellException(ResultEnum.PRODUCT_STATUS_ERROR);
         }
-
-        //更新
         productInfo.setProductStatus(ProductStatusEnum.DOWN.getStatus());
         return repository.save(productInfo);
     }

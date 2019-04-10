@@ -19,6 +19,7 @@ public class ShopRequest {
     @Id
     private String id;
     private String sellerId;
+    private String sellerOpenid;
     private String shopAddress;
     private String shopPhone;
     private String shopType;
@@ -29,6 +30,7 @@ public class ShopRequest {
     private String licenseImg;
     private String healthImg;
     private Integer requestResult;
+    private String notifyEmail;
     private Date createTime;
     private Date updateTime;
 }

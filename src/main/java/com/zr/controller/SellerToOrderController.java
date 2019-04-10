@@ -8,6 +8,7 @@ import com.zr.exception.SellException;
 import com.zr.service.OrderService;
 import com.zr.service.SellerInfoService;
 import com.zr.service.ShopInfoService;
+import com.zr.utils.GetTokenValueUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,8 +17,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 /**
@@ -41,11 +45,13 @@ public class SellerToOrderController {
     public ModelAndView list(@RequestParam(value = "page", defaultValue = "1") Integer page,
                              @RequestParam(value = "size", defaultValue = "10") Integer size,
                              Map<String, Object> map) {
-        PageRequest request = new PageRequest(page - 1, size);
-        //Page<OrderDTO> orderDTOPage = orderService.findList(request);
-        SellerInfo sellerInfo = sellerInfoService.findSellerInfoById("2111");
+        PageRequest pageRequest = new PageRequest(page - 1, size);
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder
+                .getRequestAttributes()).getRequest();
+        String sellerOpenid = GetTokenValueUtil.getToken(request);
+        SellerInfo sellerInfo = sellerInfoService.findSellerInfoByOpenid(sellerOpenid);
         ShopInfo shopInfo = shopInfoService.findBySellerInfo(sellerInfo);
-        Page<OrderDTO> orderDTOPage = orderService.findByShopId(shopInfo.getId(),request);
+        Page<OrderDTO> orderDTOPage = orderService.findByShopId(shopInfo.getId(),pageRequest);
         map.put("orderDTOPage", orderDTOPage);
         map.put("currentPage", page);
         map.put("size", size);

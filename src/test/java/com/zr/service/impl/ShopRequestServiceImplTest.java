@@ -28,7 +28,7 @@ public class ShopRequestServiceImplTest {
     private  ShopRequestService shopRequestService;
     @Test
     public void findById() {
-         ShopRequest shopRequest = shopRequestService.findById("2019032202");
+         ShopRequest shopRequest = shopRequestService.findOne("2019032202");
          Assert.assertNotEquals(null,shopRequest);
     }
 

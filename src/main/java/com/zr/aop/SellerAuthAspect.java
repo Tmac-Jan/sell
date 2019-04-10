@@ -2,7 +2,13 @@ package com.zr.aop;
 
 import com.zr.constant.CookieConstant;
 import com.zr.constant.RedisConstant;
+import com.zr.dataobject.SellerInfo;
+import com.zr.dataobject.ShopInfo;
+import com.zr.exception.BlockException;
+import com.zr.exception.NoShopException;
 import com.zr.exception.SellerAuthException;
+import com.zr.service.SellerInfoService;
+import com.zr.service.ShopInfoService;
 import com.zr.utils.serializer.CookieUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.annotation.Aspect;
@@ -30,8 +36,13 @@ public class SellerAuthAspect {
     @Autowired
     private StringRedisTemplate redisTemplate;
 
+    @Autowired
+    private ShopInfoService shopInfoService;
+    @Autowired
+    private SellerInfoService sellerInfoService;
+
     @Pointcut("execution(public * com.zr.controller.Seller*.*(..))" +
-            "&& !execution(public * com.zr.controller.SUserController.*(..))")
+            "&& !execution(public * com.zr.controller.SellerUserController.*(..))")
     public void verify() {}
 
     @Before("verify()")
@@ -52,5 +63,18 @@ public class SellerAuthAspect {
             log.warn("【登录校验】Redis中查不到token");
             throw new SellerAuthException();
         }
+        //检验是否具有店铺或者店铺是否被封锁
+        String openid = tokenValue;
+        SellerInfo sellerInfo = sellerInfoService.findSellerInfoByOpenid(openid);
+        ShopInfo shopInfo = shopInfoService.findBySellerInfo(sellerInfo);
+        if (shopInfo==null){
+            log.warn("卖家:"+sellerInfo.getOpenid()+" 越权操作");
+            throw  new NoShopException();
+        }
+        if (shopInfo.getShopBlock()==0){
+            log.warn("店铺:"+shopInfo.getShopName()+" 已被封锁");
+            throw  new BlockException();
+        }
+
     }
 }

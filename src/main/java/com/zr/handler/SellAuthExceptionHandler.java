@@ -1,6 +1,8 @@
 package com.zr.handler;
 
 import com.zr.config.ProjectUrlConfig;
+import com.zr.exception.BlockException;
+import com.zr.exception.NoShopException;
 import com.zr.exception.SellException;
 import com.zr.exception.SellerAuthException;
 import com.zr.utils.ResultVoUtil;
@@ -43,7 +45,26 @@ public class SellAuthExceptionHandler {
         return new ModelAndView("auth/noAuth",map);
 
     }
+    @ExceptionHandler(value = BlockException.class)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public ModelAndView handlerBlockException() {
+        String returnUrl = "http://www.baidu.com";
+        Map<String,Object> map = new HashMap<>();
+        map.put("msg","店铺已被封禁访问！将跳转至微信授权页面！");
+        map.put("url",returnUrl);
+        return new ModelAndView("banned/banned",map);
 
+    }
+    @ExceptionHandler(value = NoShopException.class)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public ModelAndView handlerNoShopException() {
+        String returnUrl = "http://www.baidu.com";
+        Map<String,Object> map = new HashMap<>();
+        map.put("msg","你还没有线上店铺哦！");
+        map.put("url",returnUrl);
+        return new ModelAndView("auth/noShop",map);
+
+    }
     @ExceptionHandler(value = SellException.class)
     @ResponseBody
     public ResultVo handlerSellerException(SellException e) {

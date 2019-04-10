@@ -42,14 +42,14 @@ public class BuyerToOrderController {
     public ResultVo<Map<String, String>> create(@Valid OrderForm orderForm,
                                                 BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            log.error("【创建订单】参数不正确, orderForm={}", orderForm);
+            log.error("【创建DLM订单】参数不正确, orderForm={}", orderForm);
             throw new SellException(ResultEnum.PARAM_ERROR.getStatus(),
                     bindingResult.getFieldError().getDefaultMessage());
         }
 
         OrderDTO orderDTO = OrderFormToOrderDTOConverter.convert(orderForm);
         if (CollectionUtils.isEmpty(orderDTO.getOrderDetailList())) {
-            log.error("【创建订单】购物车不能为空");
+            log.error("【创建DLM订单】购物车内的商品不能为空");
             throw new SellException(ResultEnum.CART_EMPTY);
         }
 

@@ -5,7 +5,7 @@
 <div id="wrapper" class="toggled">
 
 <#--边栏sidebar-->
-<#include "../common/nav.ftl">
+<#include "../common/nav1.ftl">
 
 <#--主要内容content-->
     <div id="page-content-wrapper">
@@ -77,8 +77,11 @@
                             <label>更新时间</label>
                             <P>${buyerComplain.updateTime}</P>
                         </div>
-
-                        <button type="submit" class="btn btn-default">回复</button>
+                        <#if (buyerComplain.shopReply??)>
+                            <a href="/sell/seller/buyerComplain/list">返回</a>
+                        <#else>
+                            <button type="submit" class="btn btn-default">回复</button>
+                        </#if>
                     </form>
                 </div>
             </div>

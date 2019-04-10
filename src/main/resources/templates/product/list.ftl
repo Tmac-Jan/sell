@@ -5,14 +5,14 @@
 <div id="wrapper" class="toggled">
 
     <#--边栏sidebar-->
-    <#include "../common/nav.ftl">
+    <#include "../common/nav1.ftl">
 
     <#--主要内容content-->
     <div id="page-content-wrapper">
         <div class="container-fluid">
             <div class="row clearfix">
                 <div class="col-md-12 column">
-                    <table class="table table-bordered table-condensed">
+                    <table class="table table-striped table-hover">
                         <thead>
                         <tr>
                             <th>商品id</th>
@@ -83,5 +83,7 @@
     </div>
 
 </div>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </body>
 </html>

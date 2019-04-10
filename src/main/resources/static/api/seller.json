@@ -1,0 +1,50 @@
+{
+  "errno": 0,
+  "data": {
+    "name": "润润汉堡",
+    "description": "营业中",
+    "deliveryTime": 35,
+    "score": 4.8,
+    "serviceScore": 4.7,
+    "foodScore": 4.6,
+    "rankRate": 80.2,
+    "minPrice": 0,
+    "deliveryPrice": 0,
+    "ratingCount": 24,
+    "sellCount": 90,
+    "bulletin": "30年来，润润汉堡一直都在努力探索，把贴心的服务回馈给广大中国消费者。如今中国润润汉堡已在1200多个城市和乡镇开设了5000余家连锁餐厅，遍及中国大陆的所有省、直辖市和自治区。",
+    "supports": [
+      {
+        "type": 0,
+        "description": "在线支付满15减2"
+      },
+      {
+        "type": 1,
+        "description": "那么大鸡排8折"
+      },
+      {
+        "type": 2,
+        "description": "情侣甜蜜套餐"
+      },
+      {
+        "type": 3,
+        "description": "该商家支持发票,请下单写好发票抬头"
+      },
+      {
+        "type": 4,
+        "description": "已加入“外卖保”计划,食品安全保障"
+      }
+    ],
+    "avatar": "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1554284554403&di=3405892e8b4e7869846523e0429378a9&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F57b7a21219181f0868cd8e2cde5d6f0ff9e3a0bc8238-wlf0He_fw658",
+    "pics": [
+      "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1554285093531&di=daa02869dacc7806e7ebfa13b16e35e6&imgtype=0&src=http%3A%2F%2Fyouimg1.c-ctrip.com%2Ftarget%2F100c0k000000ci3rj003D.jpg",
+      "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1554285135918&di=98876ba8257ac70cfbd3e97fd1f54744&imgtype=0&src=http%3A%2F%2Fwww.canyin168.com%2FUploadFiles%2Fglyy%2F2018%2F1%2F201801081246550624.jpg"
+    ],
+    "infos": [
+      "该商家支持发票,请下单写好发票抬头",
+      "品类:汉堡炸鸡",
+      "北京理工大学珠海学院34栋学生宿舍",
+      "营业时间:8:30-20:30"
+    ]
+  }
+}

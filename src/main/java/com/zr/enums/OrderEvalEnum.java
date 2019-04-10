@@ -10,7 +10,9 @@ import lombok.Getter;
 @Getter
 public enum OrderEvalEnum implements StatusEnum {
     BUYER_REPLY(1,"买家已评价"),
-    SHOP_REPLY(2,"商家已回复"), ;
+    SHOP_REPLY(2,"商家已回复"),
+    BAD_EVAL(3,"差评"),
+    GOOD_EVAL(4,"好评");
 
     private Integer status;
     private String message;

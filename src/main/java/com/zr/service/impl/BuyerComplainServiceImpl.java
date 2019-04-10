@@ -43,6 +43,19 @@ public class BuyerComplainServiceImpl implements BuyerComplainService {
    }
 
     @Override
+    public Page<BuyerComplain> findAll(Pageable pageable) {
+        return buyerComplainRepository.findAll(pageable);
+    }
+
+    @Override
+    public Page<BuyerComplainForm> getAll(Pageable pageable) {
+
+        Page<BuyerComplain> buyerComplainPage = this.findAll(pageable);
+        List<BuyerComplainForm> buyerComplainFormList = BComplainToBComplainFormConverter.convert(buyerComplainPage.getContent());
+        return new PageImpl<BuyerComplainForm>(buyerComplainFormList,pageable,buyerComplainPage.getTotalElements());
+    }
+
+    @Override
     public void save(BuyerComplain buyerComplain) {
         buyerComplainRepository.save(buyerComplain);
     }

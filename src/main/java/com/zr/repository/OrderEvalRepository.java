@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @Date: 2019/3/22 20:25
  * @Description:
  */
-public interface OrderEvalRepository extends JpaRepository<OrderEval,Integer> {
+public interface OrderEvalRepository extends JpaRepository<OrderEval,String> {
     Page<OrderEval> findOrderEvalByBuyerId(String buyerId, Pageable pageable);
     Page<OrderEval> findOrderEvalByShopId(String shopId, Pageable pageable);
 }

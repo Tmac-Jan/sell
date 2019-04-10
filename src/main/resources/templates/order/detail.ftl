@@ -5,7 +5,7 @@
 <div id="wrapper" class="toggled">
 
     <#--边栏sidebar-->
-    <#include "../common/nav.ftl">
+    <#include "../common/nav1.ftl">
 
 
     <#--主要内容content-->
@@ -13,7 +13,7 @@
         <div class="container">
             <div class="row clearfix">
                 <div class="col-md-4 column">
-                    <table class="table table-bordered">
+                    <table class="table table-hover table-responsive">
                         <thead>
                         <tr>
                             <th>订单id</th>
@@ -31,7 +31,7 @@
 
             <#--订单详情表数据-->
                 <div class="col-md-12 column">
-                    <table class="table table-bordered">
+                    <table class="table table-hover table-responsive">
                         <thead>
                         <tr>
                             <th>商品id</th>
@@ -58,14 +58,15 @@
             <#--操作-->
                 <div class="col-md-12 column">
                 <#if orderDTO.getOrderStatusEnum().message == "新订单">
-                    <a href="/sell/seller/order/finish?orderId=${orderDTO.orderId}" type="button" class="btn btn-default btn-primary">完结订单</a>
-                    <a href="/sell/seller/order/cancel?orderId=${orderDTO.orderId}" type="button" class="btn btn-default btn-danger">取消订单</a>
+                    <a href="/sell/seller/order/finish?orderId=${orderDTO.orderId}" type="button" class="button button-glow button-rounded button-raised button-primary">完结订单</a>
+                    <a href="/sell/seller/order/cancel?orderId=${orderDTO.orderId}" type="button" class="button button-glow button-rounded button-caution">取消订单</a>
                 </#if>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </body>
 </html>
