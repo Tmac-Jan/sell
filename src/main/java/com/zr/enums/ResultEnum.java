@@ -52,6 +52,7 @@ public enum ResultEnum {
     ORDER_EVAL_NOT_EXIST(29,"订单评价不存在"),
     SUPPORT_LOGIN_FAIL(30,"SUPPORT登录失败"),
     REQUEST_NOT_EXIST(31,"申请不存在"),
+    ADDRESS_NOT_PASS(32,"地址信息有误"),
     ;
 
     private Integer status;

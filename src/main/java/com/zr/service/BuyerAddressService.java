@@ -2,6 +2,10 @@ package com.zr.service;
 
 import com.zr.dataobject.BuyerAddress;
 import com.zr.dataobject.BuyerInfo;
+import com.zr.form.BuyerAddressForm;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 
 import java.util.List;
 
@@ -11,5 +15,10 @@ import java.util.List;
  * @Description:
  */
 public interface BuyerAddressService {
-    List<BuyerAddress> findBuyerAddressByBuyerInfo(BuyerInfo buyerInfo);
+    Page<BuyerAddressForm> findBuyerAddressByBuyerInfo(BuyerInfo buyerInfo,Pageable pageable);
+    BuyerAddress findBuyerAddressByIdAndOpenid(String id,String openId);
+    BuyerAddress save(BuyerAddress buyerAddress);
+    void delete(String id);
+    Page<BuyerAddressForm> findAll(Pageable pageable);
+    List<BuyerAddressForm> findAllByBuyerInfo(BuyerInfo buyerInfo);
 }

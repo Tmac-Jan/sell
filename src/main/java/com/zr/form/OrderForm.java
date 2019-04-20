@@ -13,19 +13,19 @@ public class OrderForm {
     /**
      * 买家姓名
      */
-    @NotEmpty(message = "姓名必填")
+  //  @NotEmpty(message = "姓名必填")
     private String name;
 
     /**
      * 买家手机号
      */
-    @NotEmpty(message = "手机号必填")
+  //  @NotEmpty(message = "手机号必填")
     private String phone;
 
     /**
      * 买家地址
      */
-    @NotEmpty(message = "地址必填")
+  //  @NotEmpty(message = "地址必填")
     private String address;
 
     /**
@@ -37,8 +37,11 @@ public class OrderForm {
     /**
      * 购物车
      */
-    @NotEmpty(message = "商家Id必填")
+   // @NotEmpty(message = "商家Id必填")
     private String shopId;
+
+    @NotEmpty(message = "addressId必填")
+    private String addressId;
 
     @NotEmpty(message = "购物车不能为空")
     private String items;

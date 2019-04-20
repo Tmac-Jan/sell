@@ -12,6 +12,6 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
  * @Description:
  */
 public interface OrderMasterRepository extends JpaRepository<OrderMaster,String>, JpaSpecificationExecutor<OrderMaster> {
-    Page<OrderMaster> findByBuyerOpenid(String buyerOpenid, Pageable pageable);
-    Page<OrderMaster> findByShopId(String shopId,Pageable pageable);
+    Page<OrderMaster> findByBuyerOpenidOrderByCreateTimeDesc(String buyerOpenid, Pageable pageable);
+    Page<OrderMaster> findByShopIdOrderByUpdateTimeDesc(String shopId,Pageable pageable);
 }

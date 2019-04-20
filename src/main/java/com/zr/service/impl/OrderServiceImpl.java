@@ -4,6 +4,7 @@ import com.zr.converter.OrderMasterToOrderDTOConverter;
 import com.zr.dataobject.OrderDetail;
 import com.zr.dataobject.OrderMaster;
 import com.zr.dataobject.ProductInfo;
+import com.zr.dataobject.ShopInfo;
 import com.zr.dto.CartDTO;
 import com.zr.dto.OrderDTO;
 import com.zr.enums.OrderStatusEnum;
@@ -46,8 +47,11 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private OrderMasterRepository orderMasterRepository;
 
-      @Autowired
-      private PayService payService;
+    @Autowired
+    private PayService payService;
+
+    @Autowired
+    private ShopInfoService shopInfoService;
 
     @Autowired
     private WeChatMessageService pushMessageService;
@@ -129,11 +133,15 @@ public class OrderServiceImpl implements OrderService {
      */
     @Override
     public Page<OrderDTO> findList(String buyerOpenid, Pageable pageable) {
-        Page<OrderMaster> orderMasterPage = orderMasterRepository.findByBuyerOpenid(buyerOpenid, pageable);
-
+        Page<OrderMaster> orderMasterPage = orderMasterRepository.findByBuyerOpenidOrderByCreateTimeDesc(buyerOpenid, pageable);
         List<OrderDTO> orderDTOList = OrderMasterToOrderDTOConverter.convert(orderMasterPage.getContent());
-
+        orderDTOList.stream().forEach(e->e.setShopName(this.getShopName(e.getShopId())));
         return new PageImpl<OrderDTO>(orderDTOList, pageable, orderMasterPage.getTotalElements());
+    }
+
+    public String getShopName(String shopId){
+        ShopInfo shopInfo = shopInfoService.findOne(shopId);
+        return  shopInfo.getShopName();
     }
 
     @Override
@@ -242,13 +250,14 @@ public class OrderServiceImpl implements OrderService {
 
     /**
      * 主要为卖家端服务
+     *
      * @param shopId
      * @param pageable
      * @return
      */
     @Override
     public Page<OrderDTO> findByShopId(String shopId, Pageable pageable) {
-        Page<OrderMaster> orderMasterPage = orderMasterRepository.findByShopId(shopId, pageable);
+        Page<OrderMaster> orderMasterPage = orderMasterRepository.findByShopIdOrderByUpdateTimeDesc(shopId, pageable);
 
         List<OrderDTO> orderDTOS = OrderMasterToOrderDTOConverter.convert(orderMasterPage.getContent());
 

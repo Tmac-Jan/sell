@@ -8,6 +8,7 @@ import com.zr.utils.serializer.Date2LongSerializer;
 import lombok.Data;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 /**
@@ -24,11 +25,14 @@ public class OrderEvalForm {
     private String buyerOpenid;
     @NotEmpty(message = "买家评论必填")
     private String buyerEval;
-    private Integer score =5;
+    @NotNull(message = "评分必填")
+    private Integer score ;
     private String recommend;
     //默认好评
-    private Integer rateType = OrderEvalEnum.GOOD_EVAL.getStatus();
-    @NotEmpty(message = "配送时间必填")
+    @NotNull(message = "评价类型必填")
+    private Integer rateType ;
+            //OrderEvalEnum.GOOD_EVAL.getStatus();
+    @NotNull(message = "配送时间必填")
     private Integer deliveryTime;
     @NotEmpty(message = "订单编号必填")
     private String orderId;

@@ -16,4 +16,6 @@ public interface OrderEvalService {
     OrderEval findOne(String id);
     Page<OrderEvalForm> getOrderEvalFormByShopId(String shopId,Pageable pageable);
     void save(OrderEval orderEval);
+    void delete(OrderEval orderEval);
+    OrderEval findByBuyerOpenidAndOrderId(String buyerOpenid,String orderId);
 }

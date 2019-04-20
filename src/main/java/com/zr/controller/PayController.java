@@ -27,7 +27,7 @@ public class PayController {
     @Autowired
     private PayService payService;
     @GetMapping("/create")
-    public ModelAndView create(@RequestParam("orderId") String orderId,
+    public String create(@RequestParam("orderId") String orderId,
                                @RequestParam("returnUrl") String returnUrl,
                                Map<String, Object> map) {
         //1. 查询订单
@@ -37,12 +37,14 @@ public class PayController {
         }
 
         //2. 发起支付
-        PayResponse payResponse = payService.create(orderDTO);
+        //PayResponse payResponse = payService.create(orderDTO);
 
-        map.put("payResponse", payResponse);
-        map.put("returnUrl", returnUrl);
-
-        return new ModelAndView("pay/create", map);
+//        map.put("payResponse", payResponse);
+//        map.put("returnUrl", returnUrl);
+        //修改订单的支付状态
+        orderService.paid(orderDTO);
+        return "redirect:" + returnUrl;
+        //return new ModelAndView("pay/create", map);
     }
     /**
      * 微信异步通知

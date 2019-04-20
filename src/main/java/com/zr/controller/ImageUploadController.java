@@ -31,10 +31,11 @@ public class ImageUploadController {
 
     @PostMapping("/upload")
     public ResultVo upload(@RequestParam("file_data") MultipartFile multipartFile) throws IOException, UpException {
+        System.out.println("上传图片！");
         UpYun upyun = new UpYun(upYunConfig.getBucketName(), upYunConfig.getUsername(), upYunConfig.getPassword());
         String fileName = String.format("%s.%s", UUID.randomUUID().toString(), multipartFile.getOriginalFilename().substring(multipartFile.getOriginalFilename().lastIndexOf(".") + 1));
         upyun.writeFile(fileName, multipartFile.getInputStream(), true, new HashMap<>());
-
+        System.out.println("图片名称："+fileName);
         Map map = new HashMap<>();
         map.put("fileName", fileName);
         return ResultVoUtil.success(map);

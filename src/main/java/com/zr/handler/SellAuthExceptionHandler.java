@@ -1,10 +1,7 @@
 package com.zr.handler;
 
 import com.zr.config.ProjectUrlConfig;
-import com.zr.exception.BlockException;
-import com.zr.exception.NoShopException;
-import com.zr.exception.SellException;
-import com.zr.exception.SellerAuthException;
+import com.zr.exception.*;
 import com.zr.utils.ResultVoUtil;
 import com.zr.vo.ResultVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,6 +65,12 @@ public class SellAuthExceptionHandler {
     @ExceptionHandler(value = SellException.class)
     @ResponseBody
     public ResultVo handlerSellerException(SellException e) {
+        return ResultVoUtil.error(e.getCode(), e.getMessage());
+    }
+
+    @ExceptionHandler(value = BuyException.class)
+    @ResponseBody
+    public ResultVo handlerBuyerException(BuyException e) {
         return ResultVoUtil.error(e.getCode(), e.getMessage());
     }
 

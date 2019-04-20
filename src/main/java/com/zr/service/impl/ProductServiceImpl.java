@@ -45,6 +45,12 @@ public class ProductServiceImpl implements ProductService {
                 .forEach(e -> e.addImageHost(upYunConfig.getImageHost()));
         return productInfoPage;
     }
+
+    @Override
+    public Page<ProductInfo> findAllByShopId(String shopId, Pageable pageable) {
+        return repository.findAllByShopId(shopId,pageable);
+    }
+
     @Override
     public ProductInfo save(ProductInfo productInfo) {
         return repository.save(productInfo).addImageHost(upYunConfig.getImageHost());

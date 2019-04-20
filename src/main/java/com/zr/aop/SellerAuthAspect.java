@@ -58,9 +58,10 @@ public class SellerAuthAspect {
         }
 
         //去redis里查询
-        String tokenValue = redisTemplate.opsForValue().get(String.format(RedisConstant.TOKEN_PREFIX, cookie.getValue()));
+        String tokenValue = redisTemplate.opsForValue().
+                get(String.format(RedisConstant.TOKEN_PREFIX, cookie.getValue()));
         if (StringUtils.isEmpty(tokenValue)) {
-            log.warn("【登录校验】Redis中查不到token");
+            log.warn("【系统登录校验】Redis中查不到token");
             throw new SellerAuthException();
         }
         //检验是否具有店铺或者店铺是否被封锁

@@ -18,4 +18,5 @@ public interface BuyerComplainService {
     Page<BuyerComplain> findAll(Pageable pageable);
     Page<BuyerComplainForm> getAll(Pageable pageable);
     void save(BuyerComplain buyerComplain);
+    BuyerComplain findByBuyerOpenidAndOrderId(String buyerOpenid,String orderId);
 }

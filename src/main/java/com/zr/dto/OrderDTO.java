@@ -54,9 +54,27 @@ public class OrderDTO {
      */
     private Integer payStatus;
 
-    //商家id
-    private String ShopId;
+    //评价状态
+    private Integer evalStatus;
 
+    //投诉状态
+    private Integer comStatus;
+
+    private String buyerEval;
+
+    private String evalPhoto;
+
+    private String buyerComplain;
+
+    private String complainFile;
+
+    private String complainPhoto;
+
+    //商家id
+    private String shopId;
+
+    //商家名称
+    private String shopName;
     //创建时间
     @JsonSerialize(using = Date2LongSerializer.class)
     private Date createTime;

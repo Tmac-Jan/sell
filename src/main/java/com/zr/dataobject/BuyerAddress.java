@@ -2,6 +2,7 @@ package com.zr.dataobject;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.DynamicUpdate;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -15,8 +16,7 @@ import java.util.Date;
 @DynamicUpdate
 public class BuyerAddress {
     @Id
-    @GeneratedValue
-    private Integer id;
+    private String id;
 
     private String buyerPhone;
 
@@ -24,25 +24,19 @@ public class BuyerAddress {
 
     private String buyerAddress;
 
+    private String buyerName;
     private String openid;
 
     private Date createTime;
 
     private Date updateTime;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="buyer_id")
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.REFRESH,})
+    @JoinColumn(name = "buyer_id")
     //@JsonIgnore
     @JsonIgnoreProperties("buyerAddressList")
     private BuyerInfo buyerInfo;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getBuyerPhone() {
         return buyerPhone;
@@ -98,5 +92,21 @@ public class BuyerAddress {
 
     public void setBuyerInfo(BuyerInfo buyerInfo) {
         this.buyerInfo = buyerInfo;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getBuyerName() {
+        return buyerName;
+    }
+
+    public void setBuyerName(String buyerName) {
+        this.buyerName = buyerName;
     }
 }

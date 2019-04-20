@@ -1,12 +1,15 @@
 package com.zr.controller;
 
 import com.zr.converter.OrderFormToOrderDTOConverter;
+import com.zr.dataobject.BuyerAddress;
+import com.zr.dataobject.BuyerComplain;
+import com.zr.dataobject.OrderEval;
 import com.zr.dto.OrderDTO;
+import com.zr.enums.OptionStatusEnum;
 import com.zr.enums.ResultEnum;
 import com.zr.exception.SellException;
 import com.zr.form.OrderForm;
-import com.zr.service.BuyService;
-import com.zr.service.OrderService;
+import com.zr.service.*;
 import com.zr.utils.ResultVoUtil;
 import com.zr.vo.ResultVo;
 import lombok.extern.slf4j.Slf4j;
@@ -37,6 +40,16 @@ public class BuyerToOrderController {
 
     @Autowired
     private BuyService buyService;
+
+    @Autowired
+    private BuyerAddressService buyerAddressService;
+
+    @Autowired
+    private BuyerComplainService buyerComplainService;
+
+    @Autowired
+    private OrderEvalService orderEvalService;
+
     //创建订单
     @PostMapping("/create")
     public ResultVo<Map<String, String>> create(@Valid OrderForm orderForm,
@@ -46,13 +59,16 @@ public class BuyerToOrderController {
             throw new SellException(ResultEnum.PARAM_ERROR.getStatus(),
                     bindingResult.getFieldError().getDefaultMessage());
         }
-
+        BuyerAddress buyerAddress = buyerAddressService.findBuyerAddressByIdAndOpenid(orderForm.getAddressId(),orderForm.getOpenid());
+        orderForm.setName(buyerAddress.getBuyerName());
+        orderForm.setPhone(buyerAddress.getBuyerPhone());
+        orderForm.setAddress(buyerAddress.getBuyerAddress());
         OrderDTO orderDTO = OrderFormToOrderDTOConverter.convert(orderForm);
         if (CollectionUtils.isEmpty(orderDTO.getOrderDetailList())) {
             log.error("【创建DLM订单】购物车内的商品不能为空");
             throw new SellException(ResultEnum.CART_EMPTY);
         }
-
+        orderDTO.setShopId("201931901");
         OrderDTO createResult = orderService.create(orderDTO);
 
         Map<String, String> map = new HashMap<>();
@@ -79,7 +95,23 @@ public class BuyerToOrderController {
     @GetMapping("/detail")
     public ResultVo<OrderDTO> detail(@RequestParam("openid") String openid,
                                      @RequestParam("orderId") String orderId) {
+
+
         OrderDTO orderDTO = buyService.findOrderOne(openid, orderId);
+
+        OrderEval orderEval = orderEvalService.findByBuyerOpenidAndOrderId(openid,orderId);
+        if (orderEval!=null){
+            orderDTO.setEvalStatus(OptionStatusEnum.DONE.getStatus());
+            orderDTO.setBuyerEval(orderEval.getBuyerEval());
+            orderDTO.setEvalPhoto(orderEval.getEvalPhoto());
+        }
+        BuyerComplain buyerComplain = buyerComplainService.findByBuyerOpenidAndOrderId(openid,orderId);
+        if (buyerComplain!=null){
+            orderDTO.setComStatus(OptionStatusEnum.DONE.getStatus());
+            orderDTO.setComplainFile(buyerComplain.getComplainFile());
+            orderDTO.setComplainPhoto(buyerComplain.getComplainPhoto());
+            orderDTO.setBuyerComplain(buyerComplain.getBuyerComplain());
+        }
         return ResultVoUtil.success(orderDTO);
     }
 

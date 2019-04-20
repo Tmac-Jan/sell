@@ -24,6 +24,8 @@ public interface ProductService {
 
     Page<ProductInfo> findAll(Pageable pageable);
 
+    Page<ProductInfo> findAllByShopId(String shopId,Pageable pageable);
+
     ProductInfo save(ProductInfo productInfo);
 
     //加库存

@@ -13,4 +13,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface OrderEvalRepository extends JpaRepository<OrderEval,String> {
     Page<OrderEval> findOrderEvalByBuyerId(String buyerId, Pageable pageable);
     Page<OrderEval> findOrderEvalByShopId(String shopId, Pageable pageable);
+    OrderEval findByBuyerOpenidAndOrderId(String buyerOpenid,String orderId);
 }

@@ -11,7 +11,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @Description:
  */
 public interface BuyerComplainRepository extends JpaRepository<BuyerComplain,String> {
-   Page<BuyerComplain> findAll(Pageable pageable);
+    Page<BuyerComplain> findAll(Pageable pageable);
     Page<BuyerComplain> findByBuyerOpenid(String buyerOpenid,Pageable pageable);
     Page<BuyerComplain> findByShopId(String shopId,Pageable pageable);
+    BuyerComplain findByBuyerOpenidAndOrderId(String buyerOpenid,String orderId);
 }

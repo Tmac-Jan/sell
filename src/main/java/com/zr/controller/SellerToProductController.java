@@ -2,10 +2,15 @@ package com.zr.controller;
 
 import com.zr.dataobject.ProductCategory;
 import com.zr.dataobject.ProductInfo;
+import com.zr.dataobject.SellerInfo;
+import com.zr.dataobject.ShopInfo;
 import com.zr.exception.SellException;
 import com.zr.form.ProductForm;
 import com.zr.service.CategoryService;
 import com.zr.service.ProductService;
+import com.zr.service.SellerInfoService;
+import com.zr.service.ShopInfoService;
+import com.zr.utils.GetTokenValueUtil;
 import com.zr.utils.RandomUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +24,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import sun.security.util.KeyUtil;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
@@ -38,6 +46,10 @@ public class SellerToProductController {
     private ProductService productService;
     @Autowired
     private CategoryService categoryService;
+    @Autowired
+    private SellerInfoService sellerInfoService;
+    @Autowired
+    private ShopInfoService shopInfoService;
     /**
      * 列表
      * @param page
@@ -50,7 +62,12 @@ public class SellerToProductController {
                              @RequestParam(value = "size", defaultValue = "10") Integer size,
                              Map<String, Object> map) {
         PageRequest request = new PageRequest(page - 1, size);
-        Page<ProductInfo> productInfoPage = productService.findAll(request);
+        HttpServletRequest httpServletRequest = ((ServletRequestAttributes) RequestContextHolder
+                .getRequestAttributes()).getRequest();
+        String sellerOpenid = GetTokenValueUtil.getToken(httpServletRequest);
+        SellerInfo sellerInfo = sellerInfoService.findSellerInfoByOpenid(sellerOpenid);
+        ShopInfo shopInfo = shopInfoService.findBySellerInfo(sellerInfo);
+        Page<ProductInfo> productInfoPage = productService.findAllByShopId(shopInfo.getId(),request);
         map.put("productInfoPage", productInfoPage);
         map.put("currentPage", page);
         map.put("size", size);
@@ -107,8 +124,14 @@ public class SellerToProductController {
             map.put("productInfo", productInfo);
         }
 
+        //PageRequest request = new PageRequest(page - 1, size);
+        HttpServletRequest httpServletRequest = ((ServletRequestAttributes) RequestContextHolder
+                .getRequestAttributes()).getRequest();
+        String sellerOpenid = GetTokenValueUtil.getToken(httpServletRequest);
+        SellerInfo sellerInfo = sellerInfoService.findSellerInfoByOpenid(sellerOpenid);
+        ShopInfo shopInfo = shopInfoService.findBySellerInfo(sellerInfo);
         //查询所有的类目
-        List<ProductCategory> categoryList = categoryService.findAll();
+        List<ProductCategory> categoryList = categoryService.findByShopId(shopInfo.getId());
         map.put("categoryList", categoryList);
 
         return new ModelAndView("product/index", map);

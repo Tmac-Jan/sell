@@ -1,6 +1,8 @@
 package com.zr.service.impl;
 
+import com.zr.SellApplication;
 import com.zr.dataobject.ProductInfo;
+import javafx.application.Application;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,7 +22,7 @@ import static org.junit.Assert.*;
  * @Description:
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(classes = {SellApplication.class},webEnvironment =SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ProductServiceImplTest {
     @Autowired
     private ProductServiceImpl productService;
@@ -59,5 +61,13 @@ public class ProductServiceImplTest {
 
     @Test
     public void offSale() {
+    }
+
+    @Test
+    public void findAllByShopId() {
+        PageRequest request = new PageRequest(0, 2);
+        Page<ProductInfo> productInfoPage = productService.findAllByShopId("201931901",request);
+        System.out.println(productInfoPage.getTotalElements());
+        Assert.assertNotEquals(0, productInfoPage.getTotalElements());
     }
 }

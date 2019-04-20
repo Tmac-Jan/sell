@@ -9,7 +9,7 @@ import lombok.Getter;
  */
 @Getter
 public enum BuyerComplainEnum implements StatusEnum {
-    BUYER_REPLY(1, "买家已评价"),
+    BUYER_REPLY(1, "买家已投诉"),
     SHOP_REPLY(2, "商家已回复"),
     SUPPORT_REPLY(3,"客服已回复"),;
 

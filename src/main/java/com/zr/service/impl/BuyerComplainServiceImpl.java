@@ -59,4 +59,9 @@ public class BuyerComplainServiceImpl implements BuyerComplainService {
     public void save(BuyerComplain buyerComplain) {
         buyerComplainRepository.save(buyerComplain);
     }
+
+    @Override
+    public BuyerComplain findByBuyerOpenidAndOrderId(String buyerOpenid, String orderId) {
+        return buyerComplainRepository.findByBuyerOpenidAndOrderId(buyerOpenid,orderId);
+    }
 }

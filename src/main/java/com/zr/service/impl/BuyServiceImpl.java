@@ -1,9 +1,12 @@
 package com.zr.service.impl;
 
+import com.zr.dataobject.OrderEval;
 import com.zr.dto.OrderDTO;
+import com.zr.enums.OrderEvalEnum;
 import com.zr.enums.ResultEnum;
 import com.zr.exception.SellException;
 import com.zr.service.BuyService;
+import com.zr.service.OrderEvalService;
 import com.zr.service.OrderService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +24,8 @@ public class BuyServiceImpl implements BuyService {
     @Autowired
     private OrderService orderService;
 
+    @Autowired
+    private OrderEvalService orderEvalService;
     @Override
     public OrderDTO findOrderOne(String openid, String orderId) {
         return checkOrderOwner(openid, orderId);
@@ -46,6 +51,11 @@ public class BuyServiceImpl implements BuyService {
             log.error("【查询订单】与订单的openid不一致. openid={}, orderDTO={}", openid, orderDTO);
             throw new SellException(ResultEnum.ORDER_OWNER_ERROR);
         }
+        OrderEval orderEval = orderEvalService.findByBuyerOpenidAndOrderId(openid,orderDTO.getOrderId());
+        if (orderEval == null){
+            orderDTO.setEvalStatus(0);
+        }
+        //
         return orderDTO;
     }
 }
